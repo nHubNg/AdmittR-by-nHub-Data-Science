@@ -1,0 +1,39 @@
+<!-- AdmittR_App/templates/result.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admission Result</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Admission Result</h1>
+    <div class="result">
+        <p><strong>Course:</strong> {{ data.COURSE }}</p>
+        <p><strong>JAMB Score:</strong> {{ data.Jamb_Score }}</p>
+        <p><strong>WAEC Aggregate:</strong> {{ data.Waec_Agg }}</p>
+        <p><strong>Post UTME:</strong> {{ data.Post_Utme }}</p>
+        <p><strong>Age:</strong> {{ data.Age }}</p>
+        <p><strong>First Choice:</strong> {{ data.FirstChoice }}</p>
+        <p><strong>Chosen Subjects:</strong> {{ data.Subject_Combo }}</p>
+        
+        <p> {{ admission_results }} </p>
+        
+        <h2>Main Admission Result</h2>
+        <p><strong>Admission:</strong> {{ admission_results.Admission }}</p>
+        <p><strong>Probability:</strong> {{ admission_results.Probability }}%</p>
+        
+        <h2>Admission Details for Other Courses</h2>
+        <ul>
+            {% for detail in admission_results.AdmissionDetails %}
+                <li><strong>Course:</strong> {{ detail.Course }}</li>
+                <li><strong>Admission:</strong> {{ detail.Admission }}</li>
+                <li><strong>Probability:</strong> {{ detail.Probability }}%</li>
+                <br>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
